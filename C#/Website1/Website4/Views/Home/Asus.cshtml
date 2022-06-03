@@ -1,0 +1,57 @@
+﻿@model List<Website4.Models.MayTinh>
+@{
+    ViewBag.Title = "Home Page";
+}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<h1>Danh Sách Máy Tính</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã Máy</th>
+            <th>Tên Dòng Máy</th>
+            <th>Giá bán</th>
+            <th>Ngày Sản Xuất</th>
+            <th>Hãng</th>
+            <th>Bảo Hành Vàng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@item.MaMay</td>
+                <td>@item.TenDongMay</td>
+                <td>@string.Format("{0:#,0}", item.GiaBan)</td>
+                <td>@string.Format("{0:dd/MM/yyyy}", item.NgaySX)</td>
+                <td>@item.HangSX</td>
+                @if (item.BHV == true)
+                {
+                    <td>Có</td>
+                }
+                else
+                {
+                    <td>Không</td>
+                }
+
+            </tr>
+        </tbody>
+    }
+</table>
+
+<p>Lựa chọn phương thức sắp xếp</p>
+<a href="~/Home/">Danh Sách Máy Tính</a>
+<br />
+<a href="~/Home/GiaCaoToiThap">Giá từ cao đến thấp</a>
+<br />
+<a href="~/Home/BaMayThapNhat">3 Máy Giá Thấp Nhất</a>
+<br />
+<a href="~/Home/ADenZ">Tên từ A > Z</a>
+<br />
+<a href="~/Home/CoBaoHanh">Có Bảo Hành Vàng</a>
+<br />
+

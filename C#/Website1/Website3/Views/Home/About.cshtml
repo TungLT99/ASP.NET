@@ -1,0 +1,45 @@
+﻿@model List<Website3.Class.MayTinh>
+
+
+@{
+    ViewBag.Title = "Hiển thị";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Index</title>
+</head>
+<h1>Danh Sách Toàn Bộ Máy Tính</h1>
+<table class="table table-bordered">
+    <thead>
+    <th>Mã Máy</th>
+    <th>Tên Máy</th>
+    <th>Giá Bán</th>
+    <th>Ngày Sản Xuất</th>
+    <th>Hãng SX</th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+        <td>@item.MaMay</td>
+        <td>@item.TenMay</td>
+        <td>@string.Format("{0:#,0}",item.GiaBan)</td>
+        <td>@string.Format("{0:dd/MM/yyyy}",item.NgaySX)</td>
+        <td>@item.HangSX</td>
+        </tbody>
+
+    }
+
+
+</table>
+<a href="~/Home/HienThi2May">2 Máy Thấp Nhất</a>
+<a href="~/Home/GiaTuCaoToiThap">Giá từ cao tới thấp</a>
+<a href="~/Home/HangDell">Hãng Dell</a>
+
