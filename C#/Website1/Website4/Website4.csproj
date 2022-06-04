@@ -125,7 +125,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DanhSachKhachHang.cs" />
     <Compile Include="Models\DanhSachMayTinh.cs" />
+    <Compile Include="Models\KhachHang.cs" />
     <Compile Include="Models\MayTinh.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,6 +171,12 @@
     <Content Include="Views\Home\CoBaoHanh.cshtml" />
     <Content Include="Views\Home\Asus.cshtml" />
     <Content Include="Views\Home2\Index.cshtml" />
+    <Content Include="Views\Home2\AddNew.cshtml" />
+    <Content Include="Views\Home2\GiaCaoToiThap.cshtml" />
+    <Content Include="Views\Home2\AddNew2.cshtml" />
+    <Content Include="Views\Home2\AddNewKhachHang.cshtml" />
+    <Content Include="Views\Home2\HienThiKhachHang.cshtml" />
+    <Content Include="Views\Home2\Asus2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

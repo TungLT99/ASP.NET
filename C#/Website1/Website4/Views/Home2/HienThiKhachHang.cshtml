@@ -1,0 +1,39 @@
+﻿@model List<Website4.Models.KhachHang>
+@{
+    ViewBag.Title = "Home Page";
+}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<h1>Danh Sách Khách Hàng</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã KH</th>
+            <th>Tên Khách Hàng</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ Nhận Hàng</th>
+            <th>Email</th>
+            <th>Giới Tính</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.TenKhachHang</td>
+                <td>@item.SoDienThoai)</td>
+                <td>@item.DiaChiNhanHang</td>
+                <td>@item.Email</td>
+                <td>@item.GioiTinh</td>
+
+            </tr>
+        </tbody>
+    }
+</table>
+<h2>HienThiKhachHang</h2>
+

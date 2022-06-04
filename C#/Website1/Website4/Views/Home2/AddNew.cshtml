@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "AddNew";
+}
+<br />
+<form class="form-horizontal" action="~/Home2/SaveNew">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="mamay">Mã Máy Tính</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="mamay" placeholder="Mã Máy Tính">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="tendongmay">Tên Máy Tính:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="tendongmay" placeholder="Tên Máy Tính">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="giaban">Giá Bán:</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="giaban" placeholder="Nhập Giá Bán">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="ngaysanxuat">Ngày Sản Xuất:</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" name="ngaysanxuat" placeholder="Ngày Sản Xuất">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="hangsanxuat">Hãng Sản Xuất:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="hangsanxuat" placeholder="Hãng Sản Xuất">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="bhv">Ngày Sản Xuất:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="bhv" placeholder="True/False">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label><input type="checkbox"> Bảo Hành Vàng</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Lưu</button>
+        </div>
+    </div>
+</form>
+
