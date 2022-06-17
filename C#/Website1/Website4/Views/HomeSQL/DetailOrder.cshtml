@@ -1,0 +1,94 @@
+﻿@model Website4.Models.DonHang
+
+@{
+    ViewBag.Title = "Detail Order";
+    Website4.Models.QlyBanHangEntities db = new Website4.Models.QlyBanHangEntities();
+    Website4.Models.ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.SingleOrDefault(m => m.IDDonHang == Model.IDDonHang);
+    Website4.Models.KhachHang khachHang = db.KhachHangs.SingleOrDefault(m => m.IDKhachHang == chiTietDonHang.IDKhachHang);
+}
+
+<h2>Order Detail</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <div class="row container">
+            <div class="col-md-4 col-lg-4">
+                <h4>Your Infomation</h4>
+                <div class="form-group row">
+                    <label class="control-label col-md-4">ID Đơn Hàng</label>
+                    <div class="col-md-8">
+                        <input class="form-control" value="@Model.IDDonHang" readonly />
+                        @Html.ValidationMessageFor(model => model.IDDonHang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-4">Ngày đặt hàng</label>
+                    <div class="col-md-8">
+                        <input class="form-control" value="@Model.NgayDatHang" readonly />
+                        @Html.ValidationMessageFor(model => model.NgayDatHang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-4">Tên Khách Hàng</label>
+                    <div class="col-md-8">
+                        <input class="form-control" value="@khachHang.TenKhachHang" readonly />
+                        @Html.ValidationMessageFor(model => khachHang.TenKhachHang, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-4">Số điện thoại</label>
+                    <div class="col-md-8">
+                        <input class="form-control" value="@khachHang.SoDienThoai" readonly />
+                        @Html.ValidationMessageFor(model => khachHang.SoDienThoai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-8">
+                <h4>Your Order Details <span><a class="btn btn-success pull-right" style="margin-bottom:10px;">Add new</a></span></h4>
+                
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tên Máy</th>
+                                <th>Hãng Sản Xuất</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành Tiền</th>
+                                <th>BHV</th>
+                                <th>#</th>
+                            </tr>                          
+                        </thead>
+                        <tbody>
+                            @{ 
+                                Website4.Models.MayTinh mayTinh = db.MayTinhs.SingleOrDefault(m => m.MaMay==chiTietDonHang.MaMay);
+                                var tongTien = mayTinh.GiaBan * chiTietDonHang.SoLuong;
+                            }
+                            <tr>
+                                <td>@mayTinh.TenDongMay</td>
+                                <td>@mayTinh.HangSX</td>
+                                <td>@string.Format("{0:#,0}",mayTinh.GiaBan)</td>
+                                <td>@chiTietDonHang.SoLuong</td>
+                                <td>@string.Format("{0:#,0}", tongTien)</td>
+                                @if (mayTinh.BHV == true)
+                                {
+                                    <td>Có</td>
+                                }
+                                else
+                                {
+                                    <td>Không</td>
+                                }
+
+                                <td><a href="~/HomeSQL/EditComputer?idMayTinh=@mayTinh.MaMay&idDonHang=@Model.IDDonHang">Edit</a> | <a>Delete</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+               
+            </div>
+        </div>
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

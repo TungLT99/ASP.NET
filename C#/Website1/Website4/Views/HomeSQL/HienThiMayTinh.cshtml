@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Website4.Models.MayTinh>
+
+@{
+    ViewBag.Title = "List Computer";
+}
+
+<h2>Danh Sách Máy Tính</h2>
+
+<p>
+    <a href="~/HomeSQL/AddComputer" class="btn btn-info">Add new</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenDongMay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiaBan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgaySX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HangSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BHV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenDongMay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiaBan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgaySX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HangSX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BHV)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateComputer", new { maMay=item.MaMay }) |
+            @Html.ActionLink("Delete", "DeleteComputer", new { maMay=item.MaMay })
+        </td>
+    </tr>
+}
+
+</table>

@@ -156,3 +156,7 @@ D:\ASP.NET\C#\Website1\Website4\obj\Debug\Website4.csproj.CoreCompileInputs.cach
 D:\ASP.NET\C#\Website1\Website4\obj\Debug\Website4.csproj.CopyComplete
 D:\ASP.NET\C#\Website1\Website4\obj\Debug\Website4.dll
 D:\ASP.NET\C#\Website1\Website4\obj\Debug\Website4.pdb
+D:\ASP.NET\C#\Website1\Website4\bin\EntityFramework.dll
+D:\ASP.NET\C#\Website1\Website4\bin\EntityFramework.SqlServer.dll
+D:\ASP.NET\C#\Website1\Website4\bin\EntityFramework.xml
+D:\ASP.NET\C#\Website1\Website4\bin\EntityFramework.SqlServer.xml

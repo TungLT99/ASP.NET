@@ -1,0 +1,69 @@
+﻿@model Website4.Models.DonHang
+
+@{
+    ViewBag.Title = "Add New Order";
+    Website4.Models.QlyBanHangEntities db = new Website4.Models.QlyBanHangEntities();
+    //Website4.Models.ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.SingleOrDefault(m => m.IDDonHang == Model.IDDonHang);
+   // Website4.Models.KhachHang khachHang = db.KhachHangs.SingleOrDefault(m => m.IDKhachHang == chiTietDonHang.IDKhachHang);
+}
+
+<h2>Add New Order</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDDonHang, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.IDDonHang, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.IDDonHang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Select Customer</label>
+
+        <div class="col-md-10">
+            <select class="form-control" name="idKhachHang">
+                @foreach (var item in db.KhachHangs.ToList())
+                {
+                    <option value="@item.IDKhachHang">@item.TenKhachHang</option>
+                }
+            </select>
+
+            @Html.ValidationMessageFor(model => model.IDDonHang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayDatHang, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayDatHang, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgayDatHang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="control-label col-md-2">Chọn mặt hàng</label>
+        <div class="col-md-10">
+            <select name="idMayTinh" class="form-control">
+                @foreach (var item in db.MayTinhs)
+                {
+                    <option value="@item.MaMay">@item.TenDongMay - Giá: @string.Format("{0:#,0}", item.GiaBan)</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

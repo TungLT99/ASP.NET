@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QlyBanHangModelStoreContainer" CdmEntityContainer="QlyBanHangEntities">
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="QlyBanHangModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="DiaChiNhanHang" ColumnName="DiaChiNhanHang" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="UrlHinhAnh" ColumnName="UrlHinhAnh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MayTinhs">
+      <EntityTypeMapping TypeName="QlyBanHangModel.MayTinh">
+        <MappingFragment StoreEntitySet="MayTinh">
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="MaMay" ColumnName="MaMay" />
+          <ScalarProperty Name="TenDongMay" ColumnName="TenDongMay" />
+          <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+          <ScalarProperty Name="NgaySX" ColumnName="NgaySX" />
+          <ScalarProperty Name="HangSX" ColumnName="HangSX" />
+          <ScalarProperty Name="BHV" ColumnName="BHV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTietDonHangs">
+      <EntityTypeMapping TypeName="QlyBanHangModel.ChiTietDonHang">
+        <MappingFragment StoreEntitySet="ChiTietDonHang">
+          <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="MaMay" ColumnName="MaMay" />
+          <ScalarProperty Name="IDKhachHang" ColumnName="IDKhachHang" />
+          <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonHangs">
+      <EntityTypeMapping TypeName="QlyBanHangModel.DonHang">
+        <MappingFragment StoreEntitySet="DonHang">
+          <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
+          <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

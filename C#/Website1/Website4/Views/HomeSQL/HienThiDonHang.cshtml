@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Website4.Models.DonHang>
+
+@{
+    ViewBag.Title = "List Order";
+}
+
+<h2>Danh Sách Đơn Hàng</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddOrder")
+</p>
+<table class="table">
+    <tr>
+
+        <th>Khách Đặt Hàng</th>
+        <th>SDT khách hàng</th>
+        <th>Địa chỉ giao hàng</th>
+        <th>
+            Ngày Đặt Hàng
+        </th>
+        <th></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            @{
+                Website4.Models.QlyBanHangEntities db = new Website4.Models.QlyBanHangEntities();
+                Website4.Models.ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.SingleOrDefault(m=>m.IDDonHang==item.IDDonHang);
+                Website4.Models.KhachHang khachHang = db.KhachHangs.SingleOrDefault(m=>m.IDKhachHang==chiTietDonHang.IDKhachHang);
+            }
+
+            <td>@khachHang.TenKhachHang</td>
+            <td>@khachHang.SoDienThoai</td>
+            <td>@khachHang.DiaChiNhanHang</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDatHang)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditDonHang", new { idDonHang = item.IDDonHang }) |
+                @Html.ActionLink("Details", "DetailOrder", new { idDonHang = item.IDDonHang }) |
+                @Html.ActionLink("Delete", "DeleteOrder", new { idDonHang = item.IDDonHang })
+            </td>
+        </tr>
+    }
+
+</table>

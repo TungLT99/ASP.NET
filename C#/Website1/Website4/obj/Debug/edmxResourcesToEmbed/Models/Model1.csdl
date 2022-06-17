@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QlyBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="IDKhachHang" />
+    </Key>
+    <Property Name="IDKhachHang" Type="Int32" Nullable="false" />
+    <Property Name="TenKhachHang" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiNhanHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="UrlHinhAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ChiTietDonHangs" Relationship="QlyBanHangModel.FK__ChiTietDo__IDKha__398D8EEE" FromRole="KhachHang" ToRole="ChiTietDonHang" />
+  </EntityType>
+  <EntityType Name="MayTinh">
+    <Key>
+      <PropertyRef Name="MaMay" />
+    </Key>
+    <Property Name="MaMay" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenDongMay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GiaBan" Type="Int32" />
+    <Property Name="NgaySX" Type="DateTime" Precision="3" />
+    <Property Name="HangSX" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="BHV" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ChiTietDonHangs" Relationship="QlyBanHangModel.FK__ChiTietDo__MaMay__3A81B327" FromRole="MayTinh" ToRole="ChiTietDonHang" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="QlyBanHangEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="MayTinhs" EntityType="Self.MayTinh" />
+    <EntitySet Name="ChiTietDonHangs" EntityType="QlyBanHangModel.ChiTietDonHang" />
+    <EntitySet Name="DonHangs" EntityType="QlyBanHangModel.DonHang" />
+    <AssociationSet Name="FK__ChiTietDo__IDDon__38996AB5" Association="QlyBanHangModel.FK__ChiTietDo__IDDon__38996AB5">
+      <End Role="DonHang" EntitySet="DonHangs" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDo__IDKha__398D8EEE" Association="QlyBanHangModel.FK__ChiTietDo__IDKha__398D8EEE">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDo__MaMay__3A81B327" Association="QlyBanHangModel.FK__ChiTietDo__MaMay__3A81B327">
+      <End Role="MayTinh" EntitySet="MayTinhs" />
+      <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ChiTietDonHang">
+    <Key>
+      <PropertyRef Name="IDDonHang" />
+      <PropertyRef Name="IDKhachHang" />
+      <PropertyRef Name="MaMay" />
+    </Key>
+    <Property Name="IDDonHang" Type="Int32" Nullable="false" />
+    <Property Name="IDKhachHang" Type="Int32" Nullable="false" />
+    <Property Name="MaMay" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="GiaTien" Type="Int32" />
+    <NavigationProperty Name="DonHang" Relationship="QlyBanHangModel.FK__ChiTietDo__IDDon__38996AB5" FromRole="ChiTietDonHang" ToRole="DonHang" />
+    <NavigationProperty Name="KhachHang" Relationship="QlyBanHangModel.FK__ChiTietDo__IDKha__398D8EEE" FromRole="ChiTietDonHang" ToRole="KhachHang" />
+    <NavigationProperty Name="MayTinh" Relationship="QlyBanHangModel.FK__ChiTietDo__MaMay__3A81B327" FromRole="ChiTietDonHang" ToRole="MayTinh" />
+  </EntityType>
+  <EntityType Name="DonHang">
+    <Key>
+      <PropertyRef Name="IDDonHang" />
+    </Key>
+    <Property Name="IDDonHang" Type="Int32" Nullable="false" />
+    <Property Name="NgayDatHang" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ChiTietDonHangs" Relationship="QlyBanHangModel.FK__ChiTietDo__IDDon__38996AB5" FromRole="DonHang" ToRole="ChiTietDonHang" />
+  </EntityType>
+  <Association Name="FK__ChiTietDo__IDDon__38996AB5">
+    <End Type="QlyBanHangModel.DonHang" Role="DonHang" Multiplicity="1" />
+    <End Type="QlyBanHangModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonHang">
+        <PropertyRef Name="IDDonHang" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="IDDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDo__IDKha__398D8EEE">
+    <End Type="QlyBanHangModel.KhachHang" Role="KhachHang" Multiplicity="1" />
+    <End Type="QlyBanHangModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="IDKhachHang" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="IDKhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDo__MaMay__3A81B327">
+    <End Type="QlyBanHangModel.MayTinh" Role="MayTinh" Multiplicity="1" />
+    <End Type="QlyBanHangModel.ChiTietDonHang" Role="ChiTietDonHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MayTinh">
+        <PropertyRef Name="MaMay" />
+      </Principal>
+      <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="MaMay" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

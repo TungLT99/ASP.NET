@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Website4.Models.KhachHang>
+
+@{
+    ViewBag.Title = "Customer List";
+}
+
+<h2>Danh Sách Khách Hàng</h2>
+
+<p>
+    <a class="btn btn-info" href="~/HomeSQL/AddCustomer">Add new</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên Khách Hàng
+        </th>
+        <th>
+            Số Điện Thoại
+        </th>
+        <th>
+            Địa Chỉ Nhận Hàng
+        </th>
+        <th>
+            Địa Chỉ Email
+        </th>
+        <th>
+            Giới Tính
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKhachHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDienThoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChiNhanHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioiTinh)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "UpdateCustomer", new { idKhachHang=item.IDKhachHang }) |
+            @Html.ActionLink("Delete", "DeleteCustomer", new { idKhachHang=item.IDKhachHang }) |
+            
+        </td>
+    </tr>
+}
+
+</table>
