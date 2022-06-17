@@ -129,6 +129,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeSQLController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -642,6 +644,7 @@
     <Content Include="Plugin\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Plugin\ckeditor\SECURITY.md" />
     <Content Include="Plugin\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -679,6 +682,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Admin\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
