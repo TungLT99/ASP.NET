@@ -1,0 +1,91 @@
+﻿@model Website4.Models.DonHang
+
+@{
+    ViewBag.Title = "DetailDonHang";
+}
+
+<h2>Chi Tiết Đơn Hàng</h2>
+
+<div>
+    
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Thông tin người đặt hàng</h4>
+            <dl class="dl-horizontal">
+                <dt>
+                    <label>Tên Khách Hàng</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenKhachHang)
+                </dd>
+
+                <dt>
+                    <label>Số Điện Thoại</label>
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SDT)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DiaChiGiaoHang)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DiaChiGiaoHang)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NgayDatHang)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NgayDatHang)
+                </dd>
+
+            </dl>
+        </div>
+        <div class="col-md-8">
+            <h4>Nội dung chi tiết đơn hàng</h4>
+            <a href="~/Home2/AddMayTinh?idDonHang=@Model.ID" class="pull-right">Add New</a>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mã Máy Tính</th>
+                        <th>Tên Máy Tính</th>
+                        <th>Giá Bán</th>
+                        <th>Bảo Hành Vàng</th>
+                        <th>Hãng Sản Xuất</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.DSMayTinh)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@item.MaMay</td>
+                            <td>@item.TenDongMay</td>
+                            <td>@item.GiaBan</td>
+                            @if (item.BHV == true)
+                            {
+                                <td>Có</td>
+                            }
+                            else
+                            {
+                                <td>Không</td>
+                            }
+                            <td>@item.HangSX</td>
+                            <td><a href="~/Home2/EditMayTinh?idDonHang=@Model.ID&maMayTinh=@item.MaMay">Edit</a> | 
+                            <a href="~/Home2/DeleteMayTinh?idDonHang=@Model.ID&maMayTinh=@item.MaMay">Delete</a></td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+    
+</div>
+
+

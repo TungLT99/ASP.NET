@@ -49,8 +49,9 @@ namespace Website4.Controllers
         }
         public ActionResult GiaCaoToiThap()
         {
-            DanhSachMayTinh.listMayTinh.OrderByDescending(m=>m.GiaBan);
-            return View(DanhSachMayTinh.listMayTinh);
+            var dsMT = DanhSachMayTinh.listMayTinh;
+            dsMT.OrderByDescending(m=>m.GiaBan);
+            return View(dsMT);
         }
         public ActionResult Asus2()
         {
@@ -86,10 +87,129 @@ namespace Website4.Controllers
         {
             return View();
         }
-        public ActionResult SaveNewKhachHang(KhachHang khachHang)
+        [HttpPost]
+        public ActionResult AddNewKhachHang(KhachHang khachHang,HttpPostedFileBase fileAnh)
         {
-            DanhSachKhachHang.dSKhachHang.Add(khachHang);
+            if (khachHang.TenKhachHang == null)
+            {
+                ModelState.AddModelError("","Mời Bạn Nhập tên");
+                return View(khachHang);
+            }  
+            if (fileAnh.ContentLength>0)
+            {
+                //Xử lý file ảnh
+                string rootFolder = Server.MapPath("/Data/");
+                string pathImage = rootFolder + fileAnh.FileName; // Lấy Url ảnh
+                fileAnh.SaveAs(pathImage); // Lưu ảnh
+                khachHang.UrlHinhAnh = "/Data/"+fileAnh.FileName; // Lưu thuộc tính đối tượng 
+            }    
+           
+                DanhSachKhachHang.dSKhachHang.Add(khachHang);
+                return RedirectToAction("HienThiKhachHang");        
+        }
+        public ActionResult UpdateKhachHang (int IDKhachHang)
+        {
+            var khachHang= DanhSachKhachHang.dSKhachHang.SingleOrDefault(m => m.IDKH == IDKhachHang);
+            return View(khachHang);
+        }
+        [HttpPost]
+        public ActionResult UpdateKhachHang(KhachHang model)
+        {
+            // Xử lý lưu và update dữ liệu
+            var khachHang = DanhSachKhachHang.dSKhachHang.SingleOrDefault(m => m.IDKH == model.IDKH);
+            khachHang.TenKhachHang=model.TenKhachHang;
+            khachHang.DiaChiNhanHang=model.DiaChiNhanHang;
+            khachHang.SoDienThoai=model.SoDienThoai;
+            khachHang.Email=model.Email;
+            khachHang.GioiTinh = model.GioiTinh;
+            //return View(khachHang);
             return RedirectToAction("HienThiKhachHang");
+        }
+        public ActionResult DeleteKhachHang(int IDKhachHang)
+        {
+            var khachHang = DanhSachKhachHang.dSKhachHang.SingleOrDefault(m => m.IDKH == IDKhachHang);
+            DanhSachKhachHang.dSKhachHang.Remove(khachHang);
+            return RedirectToAction("HienThiKhachHang");
+        }
+        public ActionResult HienThiHoaDon()
+        {
+            return View(DanhSachDonHang.listDonHang);
+        }
+        public ActionResult AddDonHang()
+        {
+            return View();
+        }
+        public ActionResult SaveDonHang(DonHang donHang)
+        {
+            DanhSachDonHang.listDonHang.Add(donHang);
+            return RedirectToAction("HienThiHoaDon");
+        }
+        public ActionResult UpdateDonHang(int idDonHang)
+        {
+            var donHang=DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == idDonHang);
+            return View(donHang);
+        }
+        [HttpPost]
+        public ActionResult UpdateDonHang(DonHang donHang)
+        {
+            var model = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == donHang.ID);
+            model.NgayDatHang = donHang.NgayDatHang;
+            model.DiaChiGiaoHang=donHang.DiaChiGiaoHang;
+            model.TenKhachHang = donHang.TenKhachHang;
+            model.SDT = donHang.SDT;
+            return RedirectToAction("HienThiHoaDon");
+        }
+        public ActionResult DeleteDonHang(int ID)
+        {
+            var donHang = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == ID);
+            DanhSachDonHang.listDonHang.Remove(donHang);
+            return RedirectToAction("HienThiHoaDon");
+        }
+        public ActionResult DetailDonHang(int idDonHang)
+        {
+            var donHang = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == idDonHang);
+            return View(donHang);
+        }
+        public ActionResult AddMayTinh(int idDonHang)
+        {
+            MayTinh maytinh = new MayTinh();
+            var donHang = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == idDonHang);
+            ViewBag.idDonHang = idDonHang;
+            return View(maytinh);
+        }
+        [HttpPost]
+        public ActionResult AddMayTinh(int idDonHang,MayTinh mayTinh)
+        {
+            var donHang = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == idDonHang);
+            donHang.DSMayTinh.Add(mayTinh);
+            return RedirectToAction("DetailDonHang",new {idDonHang=idDonHang});
+        }
+        public ActionResult EditMayTinh(int idDonHang,string maMayTinh)
+        {
+            var donHang = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == idDonHang);
+            ViewBag.idDonHang = idDonHang;
+            var mayTinh = donHang.DSMayTinh.SingleOrDefault(m=>m.MaMay==maMayTinh);
+            return View(mayTinh);
+        }
+        [HttpPost]
+        public ActionResult EditMayTinh(int idDonHang, MayTinh mayTinh)
+        {
+            var donHang = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == idDonHang);
+            ViewBag.idDonHang = idDonHang;
+            var mayTinhUpdate = donHang.DSMayTinh.SingleOrDefault(m => m.MaMay == mayTinh.MaMay);
+            mayTinhUpdate.HangSX = mayTinh.HangSX;
+            mayTinhUpdate.BHV = mayTinh.BHV;
+            mayTinhUpdate.GiaBan=mayTinh.GiaBan;
+            mayTinhUpdate.TenDongMay = mayTinh.TenDongMay;
+            return RedirectToAction("DetailDonHang", new { idDonHang = idDonHang });
+        }
+        public ActionResult DeleteMayTinh(int idDonHang,string maMayTinh)
+        {
+            var donHang = DanhSachDonHang.listDonHang.SingleOrDefault(m => m.ID == idDonHang);
+            ViewBag.idDonHang = idDonHang;
+            var mayTinh = donHang.DSMayTinh.SingleOrDefault(m => m.MaMay == maMayTinh);
+            donHang.DSMayTinh.Remove(mayTinh);
+            return RedirectToAction("DetailDonHang", new { idDonHang = idDonHang });
         }
 
     }

@@ -18,22 +18,40 @@
             <th>Địa chỉ Nhận Hàng</th>
             <th>Email</th>
             <th>Giới Tính</th>
+            <th>Avatar</th>
+            <th>#</th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
         <tbody>
             <tr>
-                <td>@item.ID</td>
+                <td>@item.IDKH</td>
                 <td>@item.TenKhachHang</td>
-                <td>@item.SoDienThoai)</td>
+                <td>@item.SoDienThoai</td>
                 <td>@item.DiaChiNhanHang</td>
                 <td>@item.Email</td>
                 <td>@item.GioiTinh</td>
+                <td><img / src="@item.UrlHinhAnh" style="width:150px;height:150px"></td>
+                <td><a href="~/Home2/UpdateKhachHang?IDKhachHang=@item.IDKH">Sửa</a> | 
+                <a onclick="CheckXoaKH(@item.IDKH)" href="#">Xóa</a></td>
 
             </tr>
         </tbody>
     }
 </table>
-<h2>HienThiKhachHang</h2>
+<a href="~/Home2/AddNewKhachHang">Thêm Mới Khách Hàng</a>
+<br />
+<a href="~/Home2">Back to Home</a>
 
+@section script{
+    <script>
+        var CheckXoaKH = function (idKhachHang) {
+            if (confirm("Do you want to delete this customer?") == true)
+            {
+                location.href = '/Home2/DeleteKhachHang?IDKhachHang=' + idKhachHang
+            }
+        }
+
+    </script>
+    }

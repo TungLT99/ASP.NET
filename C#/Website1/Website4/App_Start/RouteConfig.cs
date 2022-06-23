@@ -16,7 +16,7 @@ namespace Website4
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "HomeSQL", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

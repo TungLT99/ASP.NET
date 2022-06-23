@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "HomePage";
+}
+<style>
+    .container#content
+    {
+        margin-top:100px;
+    }
+    .container#content a
+    {
+        color:black;
+        line-height:100px;
+    }
+    .container a:hover
+    {
+        text-decoration:none;
+        cursor:pointer;
+    }
+    .container .content-thumbnail1
+    {
+        background-color:green;
+        line-height:100px;
+    }
+    .container .content-thumbnail2 {
+            background-color: aqua;
+            line-height: 100px;
+    }
+    .container .content-thumbnail3 {
+            background-color: gray;
+            line-height: 100px;
+    }
+    .container .content-thumbnail4
+    {
+        background-color:wheat;
+        line-height:100px;
+    }
+    .container .hover:hover
+    {
+        opacity:70%;
+        cursor:pointer;
+    }
+</style>
+<div class="row container" id="content">
+    <div class="col-lg-3 col-md-3 col-sm-6 content-thumbnail1 text-center hover">
+        <a href="~/HomeSQL/HienThiDonHang">Danh Sách Đơn Hàng</a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 content-thumbnail2 text-center hover">
+        <a href="~/HomeSQL/HienThiKhachHang">Danh Sách Khách Hàng</a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 content-thumbnail3 text-center hover">
+        <a href="~/HomeSQL/HienThiMayTinh">Danh Sách Máy Tính</a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 content-thumbnail4 text-center hover">
+        <a>About</a>
+    </div>
+</div>
+
