@@ -1,4 +1,4 @@
-go
+﻿go
 drop database TungStoreDB
 go
 create database TungStoreDB
@@ -36,7 +36,8 @@ create table HANGHOA
 create table PHANQUYEN
 (
 	IDPhanQuyen int primary key,
-	TenQuyenHan nvarchar(20)
+	TenQuyenHan nvarchar(40),
+
 )
 create table LOAIKHACHHANG
 (
@@ -44,14 +45,23 @@ create table LOAIKHACHHANG
 	TenLoaiKhachHang nvarchar(30),
 	ChietKhau int
 )
+create table TAIKHOAN
+(
+	IDTaiKhoan int identity primary key,
+	IDDangNhap nvarchar(30),
+	Pass nvarchar(30),
+	Active bit,
+	IDPhanQuyen int foreign key references PHANQUYEN(IDPhanQuyen)
+)
 create table KHACHHANG
 (
 	IDKhachHang int identity primary key,
 	TenKhachHang nvarchar(100),
 	DiaChi nvarchar(100),
 	SDT nvarchar(12),
+	Email nvarchar(100),
 	IDLoaiKhachHang int foreign key references LOAIKHACHHANG(IDLoaiKhachHang),
-	IDPhanQuyen int foreign key references PHANQUYEN(IDPhanQuyen)
+	IDTaiKhoan int foreign key references TAIKHOAN(IDTaiKhoan),
 )
 create table NHANVIEN
 (
@@ -60,8 +70,9 @@ create table NHANVIEN
 	DiaChi nvarchar(100),
 	SDT nvarchar(12),
 	NgayVaoLam date,
-	IDPhanQuyen int foreign key references PHANQUYEN(IDPhanQuyen)
+	IDTaiKhoan int foreign key references TAIKHOAN(IDTaiKhoan)
 )
+
 create table HOADONXUAT
 (
 	idHoaDonXuat int identity primary key,
@@ -274,3 +285,41 @@ insert into HANGHOA (IDLoaiHang,TenLoaiHang,IDHangSanXuat,GiaBan,GiamGia)
 values ('7','LCD Dell U2422H','G3','15000000','14')
 insert into HANGHOA (IDLoaiHang,TenLoaiHang,IDHangSanXuat,GiaBan,GiamGia) 
 values ('7','LCD MSI OPTIX MAG271C','G2','8100000','11')
+
+ALTER TABLE KHACHHANG
+ADD UrlHinhAnh nvarchar(max);
+AlTER TABLE PHANQUYEN
+ALTER COLUMN TENQUYENHAN nvarchar(40)
+
+insert into PHANQUYEN values ('1','Admin')
+insert into PHANQUYEN values ('2','Nhân Viên Bán Hàng')
+insert into PHANQUYEN values ('3','Nhân Viên Quản Lý')
+insert into PHANQUYEN values ('4','Khách Hàng')
+
+insert into TAIKHOAN values ('admin','admin','true','1')
+insert into TAIKHOAN values ('employee1','employee1','true','2')
+insert into TAIKHOAN values ('employee2','employee2','true','2')
+insert into TAIKHOAN values ('employee3','employee3','true','2')
+insert into TAIKHOAN values ('employee4','employee4','true','3')
+insert into TAIKHOAN values ('customer1','customer1','true','4')
+insert into TAIKHOAN values ('customer2','customer2','true','4')
+insert into TAIKHOAN values ('customer3','customer3','true','4')
+insert into TAIKHOAN values ('customer4','customer4','true','4')
+insert into TAIKHOAN values ('customer5','customer5','true','4')
+--Khách Hàng
+insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
+values ('Trần Văn An','245 Âu Cơ Liên Chiểu Đà Nẵng','012345678','vanan69@gmail.com','6')
+insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
+values ('Nguyễn Văn B','75 Bạch Đằng Đà Nẵng','012356478','nguyenvanb69@gmail.com','7')
+insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
+values ('Mitsuha','Tokyo Japan','0169696969','mitsuha@gmail.com','8')
+insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
+values ('Taki','Tokyo Japan','0126555222','taki@gmail.com','9')
+insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
+values ('Trần Khách','245 Âu Cơ Liên Chiểu Đà Nẵng','012355544','trankhach@gmail.com','10')
+--Nhan Vien
+insert into NHANVIEN values ('Tùng Lê','245 Âu Cơ Liên Chiểu Đà Nẵng','011111111','','1')
+insert into NHANVIEN values ('Trần Thị Vui','200 Âu Cơ Liên Chiểu Đà Nẵng','0165686238','','2')
+insert into NHANVIEN values ('Nguyễn Thắng Lợi','200 Lê Lợi Liên Chiểu Đà Nẵng','0526341235','','3')
+insert into NHANVIEN values ('Trần Vội Vàng','80 Trần Nam Trung Cẩm Lệ Đà Nẵng','0145614566','','4')
+insert into NHANVIEN values ('Lê Thị Bích Thủy','77 Núi Thành Liên Chiểu Đà Nẵng','0164124655','','5')
