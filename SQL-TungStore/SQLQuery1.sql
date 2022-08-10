@@ -288,6 +288,8 @@ values ('7','LCD MSI OPTIX MAG271C','G2','8100000','11')
 
 ALTER TABLE KHACHHANG
 ADD UrlHinhAnh nvarchar(max);
+ALTER TABLE HANGHOA
+ADD UrlHinhAnh nvarchar(max);
 AlTER TABLE PHANQUYEN
 ALTER COLUMN TENQUYENHAN nvarchar(40)
 
@@ -308,18 +310,18 @@ insert into TAIKHOAN values ('customer4','customer4','true','4')
 insert into TAIKHOAN values ('customer5','customer5','true','4')
 --Khách Hàng
 insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
-values ('Trần Văn An','245 Âu Cơ Liên Chiểu Đà Nẵng','012345678','vanan69@gmail.com','6')
+values (N'Trần Văn An',N'245 Âu Cơ Liên Chiểu Đà Nẵng','012345678','vanan69@gmail.com','6')
 insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
-values ('Nguyễn Văn B','75 Bạch Đằng Đà Nẵng','012356478','nguyenvanb69@gmail.com','7')
+values (N'Nguyễn Văn B',N'75 Bạch Đằng Đà Nẵng','012356478','nguyenvanb69@gmail.com','7')
 insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
-values ('Mitsuha','Tokyo Japan','0169696969','mitsuha@gmail.com','8')
+values (N'Mitsuha',N'Tokyo Japan','0169696969','mitsuha@gmail.com','8')
 insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
-values ('Taki','Tokyo Japan','0126555222','taki@gmail.com','9')
+values (N'Taki',N'Tokyo Japan','0126555222','taki@gmail.com','9')
 insert into KHACHHANG (TenKhachHang,DiaChi,SDT,Email,IDTaiKhoan)
-values ('Trần Khách','245 Âu Cơ Liên Chiểu Đà Nẵng','012355544','trankhach@gmail.com','10')
+values (N'Trần Khách',N'245 Âu Cơ Liên Chiểu Đà Nẵng','012355544','trankhach@gmail.com','10')
 --Nhan Vien
-insert into NHANVIEN values ('Tùng Lê','245 Âu Cơ Liên Chiểu Đà Nẵng','011111111','','1')
-insert into NHANVIEN values ('Trần Thị Vui','200 Âu Cơ Liên Chiểu Đà Nẵng','0165686238','','2')
-insert into NHANVIEN values ('Nguyễn Thắng Lợi','200 Lê Lợi Liên Chiểu Đà Nẵng','0526341235','','3')
-insert into NHANVIEN values ('Trần Vội Vàng','80 Trần Nam Trung Cẩm Lệ Đà Nẵng','0145614566','','4')
-insert into NHANVIEN values ('Lê Thị Bích Thủy','77 Núi Thành Liên Chiểu Đà Nẵng','0164124655','','5')
+insert into NHANVIEN values (N'Tùng Lê',N'245 Âu Cơ Liên Chiểu Đà Nẵng','011111111','','1')
+insert into NHANVIEN values (N'Trần Thị Vui',N'200 Âu Cơ Liên Chiểu Đà Nẵng','0165686238','','2')
+insert into NHANVIEN values (N'Nguyễn Thắng Lợi',N'200 Lê Lợi Liên Chiểu Đà Nẵng','0526341235','','3')
+insert into NHANVIEN values (N'Trần Vội Vàng',N'80 Trần Nam Trung Cẩm Lệ Đà Nẵng','0145614566','','4')
+insert into NHANVIEN values (N'Lê Thị Bích Thủy',N'77 Núi Thành Liên Chiểu Đà Nẵng','0164124655','','5')
